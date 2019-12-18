@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huifangyuan.app.mapper.CollectMapper" >
+  <resultMap id="BaseResultMap" type="com.huifangyuan.app.domain.Collect" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="shop_id" property="memberId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+
+  </resultMap>
+	<insert id="insertCollectOrderByMemberId"  parameterType="com.huifangyuan.app.domain.Collect">
+		insert into ums_collect(member_id,order_id) VALUES(#{memberId},#{orderId})
+	</insert>
+    <insert id="insertCollectProductByMemberId" parameterType="com.huifangyuan.app.domain.Collect">
+		insert into ums_collect(member_id,product_id) VALUES(#{memberId},#{productId})
+	</insert>
+    <!--	<update id="updateCollectProductByMemberId">-->
+<!--		UPDATE ums_collect-->
+<!--			SET product_id = NULL-->
+<!--		WHERE-->
+<!--			member_id = #{memberId}-->
+<!--		AND-->
+<!--			product_id=#{productId}-->
+<!--	</update>-->
+<!--	<update id="updateCollectOrderByMemberId">-->
+<!--		UPDATE ums_collect-->
+<!--			SET order_id = NULL-->
+<!--		WHERE-->
+<!--			member_id = #{memberId}-->
+<!--		AND-->
+
+<!--			order_id=#{orderId}-->
+<!--	</update>-->
+	<delete id="deleteCollectProductByMemberId"  parameterType="com.huifangyuan.app.domain.Collect">
+		DELETE
+FROM
+	ums_collect
+WHERE
+	member_id = #{memberId}
+AND product_id = #{productId}
+	</delete>
+	<delete id="deleteCollectOrderByMemberId"  parameterType="com.huifangyuan.app.domain.Collect">
+		DELETE
+FROM
+	ums_collect
+WHERE
+	member_id = #{memberId}
+AND order_id = #{orderId}
+	</delete>
+
+
+	<select id="selectAllCollectProductByMemberId" resultType="com.huifangyuan.app.domain.PmsProduct" parameterType="Long">
+     SELECT
+		id,
+	shop_id shopId,
+	brand_id brandId,
+	product_category_id productCategoryId,
+	product_attribute_category_id productAttributeCategoryId,
+	name,
+	pic,
+	product_sn productSn,
+	delete_status deleteStatus,
+	publish_status publishStatus,
+	new_status newStatus,
+	recommand_status recommandStatus,
+    sort,
+	sale,
+	price,
+	promotion_price promotionPrice,
+	gift_point giftPoint,
+	sub_title subTitle,
+	original_price originalPrice,
+	stock,
+	low_stock lowStock,
+	unit,
+	weight,
+	service_ids serviceIds,
+	keywords,
+	note,
+	album_id albumId,
+	detail_title detailTitle,
+	promotion_start_time promotionStartTime,
+	promotion_per_limit promotionPerLimit,
+	promotion_type promotionType,
+	brand_name brandName,
+	product_category_name productCategoryName,
+	currency,
+	description,
+	detail_desc detailDesc,
+	detail_html detailHtml,
+	detail_mobile_html detailMobileHtml
+FROM
+	pms_product pro
+LEFT JOIN (
+	SELECT
+		c.member_id memberId,
+		c.product_id productId
+	FROM
+		ums_collect c
+	WHERE
+		member_id = #{memberId}
+	AND product_id IS NOT NULL
+) co ON pro.id = co.productId
+  </select>
+  <select id="selectAllCollectOrderByMemberId" resultType="com.huifangyuan.app.domain.OmsOrder" parameterType="Long">
+
+    SELECT
+		id,
+	member_id memberId,
+	shop_id shopId,
+	group_promotion_id groupPromotionId,
+	coupon_id couponId,
+	order_sn orderSn,
+	create_time createTime,
+	member_username memberUsername,
+	total_amount totalAmount,
+	pay_amount payAmount,
+	freight_amount freightAmount,
+	promotion_amount promotionAmount,
+	integration_amount integrationAmount,
+	coupon_amount couponAmount,
+	discount_amount discountAmount,
+	pay_type payType,
+	source_type sourceType,
+	status,
+	order_type orderType,
+	delivery_company deliveryCompany,
+	delivery_sn deliverySn,
+	auto_confirm_day autoConfirmDay,
+	integration,
+	growth,
+	promotion_info promotionInfo,
+	bill_type billType,
+	bill_header billHeader,
+	bill_content billContent,
+	bill_receiver_phone billReceiverPhone,
+	bill_receiver_email billReceiverEmail,
+	receiver_name receiverName,
+	receiver_phone receiverPhone,
+	receiver_post_code receiverPostCode,
+	receiver_province receiverProvince,
+	receiver_city receiverCity,
+	receiver_region receiverRegion,
+	receiver_detail_address receiverDetailAddress,
+	note,
+	confirm_status confirmStatus,
+	delete_status deleteStatus,
+	use_integration useIntegration,
+	payment_time paymentTime,
+	delivery_time deliveryTime,
+	receive_time receiveTime,
+	comment_time commentTime,
+	modify_time modifyTime
+FROM
+	oms_order om
+LEFT JOIN (
+	SELECT
+    	c.member_id memberId,
+		c.order_id orderId
+	FROM
+		ums_collect c
+	WHERE
+		member_id = #{memberId}
+	AND order_id IS NOT NULL
+) co ON om.id = co.orderId
+  </select>
+	<select id="selectAllCollectCountByMember" resultType="java.util.Map">
+		SELECT(SELECT
+	count(1)
+FROM
+	(
+		SELECT
+			product_id
+		FROM
+			ums_collect
+		WHERE
+			member_id = #{memberId}
+		AND product_id IS NOT NULL
+	)co)+
+(SELECT
+	count(1)
+FROM
+	(
+		SELECT
+			order_id
+		FROM
+			ums_collect
+		WHERE
+			member_id = #{memberId}
+		AND order_id IS NOT NULL
+
+	)coo)as collectCount
+
+	</select>
+	<select id="selectIfCollectProduct" resultType="com.huifangyuan.app.domain.Collect"  parameterType="com.huifangyuan.app.domain.Collect">
+			SELECT
+			member_id memberId,
+			product_id productId
+		FROM
+			ums_collect
+		WHERE
+			member_id = #{memberId}
+		AND product_id = #{productId}
+	</select>
+    <select id="selectIfCollectOrder" resultType="com.huifangyuan.app.domain.Collect"  parameterType="com.huifangyuan.app.domain.Collect">
+		SELECT
+			member_id memberId,
+			order_id orderId
+		FROM
+			ums_collect
+		WHERE
+			member_id = #{memberId}
+		AND order_id = #{orderId}
+	</select>
+    <select id="selectProductStatusById" resultType="java.lang.Integer" parameterType="Long">
+		select publish_status FROM pms_product where id=#{productId}
+	</select>
+    <select id="selectMemberByToken" resultType="com.huifangyuan.app.domain.Member">
+		select * from ums_member where token=#{token}
+	</select>
+
+
+    <!--  <insert id="addCollectByMemberIdAndProductId" parameterType="map">-->
+<!--    insert into ums_collect(member_id,product_id) values (#{memberId},#{productID})-->
+<!--  </insert>-->
+<!--  <select id="selectCollectByMemberId" parameterType="map" resultType="com.huifangyuan.app.domain.Collect" >-->
+<!--    select * from ums_collect where member_id=#{memberId} and product_id=#{productID}-->
+<!--  </select>-->
+
+
+</mapper>
+
