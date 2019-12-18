@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.aaa.lee.app.mapper.OrderMapper" >
-  <resultMap id="BaseResultMap" type="com.aaa.lee.app.domain.Order" >
+<mapper namespace="com.huifangyuan.app.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.huifangyuan.app.domain.Order" >
     <!--
       WARNING - @mbg.generated
     -->
@@ -55,7 +55,7 @@
   <select id="selectOrderByOrderSn" parameterType="string" resultMap="BaseResultMap">
   select * from oms_order where order_sn = #{orderSn}
 </select>
-  <select id="getShopSettingAndMbrRule" parameterType="Object" resultType="com.aaa.lee.app.vo.ShopAndMemberSettingVo">
+  <select id="getShopSettingAndMbrRule" parameterType="Object" resultType="com.huifangyuan.app.vo.ShopAndMemberSettingVo">
     SELECT os.shop_id,os.normal_order_overtime,os.confirm_overtime,os.finish_overtime,os.comment_overtime,
         mrs.continue_sign_point,mrs.consume_per_point,mrs.low_order_amount,mrs.max_point_per_order
     FROM oms_order_setting os

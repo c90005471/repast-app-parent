@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>repast-app-parent</artifactId>
-        <groupId>com.aaa.lee.app</groupId>
+        <groupId>com.huifangyuan.app</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -12,16 +12,16 @@
     <artifactId>repast-app-provider-management</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>repast-app-userinfo-provider-8081</module>
+        <module>repast-app-provider-8081</module>
     </modules>
     <dependencies>
         <dependency>
-            <groupId>com.aaa.lee.app</groupId>
+            <groupId>com.huifangyuan.app</groupId>
             <artifactId>repast-app-management-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.aaa.lee.app</groupId>
+            <groupId>com.huifangyuan.app</groupId>
             <artifactId>repast-app-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
@@ -38,7 +38,7 @@
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
-        <dependency>
+       <!-- <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
@@ -49,7 +49,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-        </dependency>
+        </dependency>-->
         <!-- https://mvnrepository.com/artifact/com.github.wxpay/wxpay-sdk -->
         <dependency>
             <groupId>com.github.wxpay</groupId>

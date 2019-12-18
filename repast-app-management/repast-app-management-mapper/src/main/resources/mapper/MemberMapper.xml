@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.aaa.lee.app.mapper.MemberMapper" >
-  <resultMap id="BaseResultMap" type="com.aaa.lee.app.domain.Member" >
+<mapper namespace="com.huifangyuan.app.mapper.MemberMapper" >
+  <resultMap id="BaseResultMap" type="com.huifangyuan.app.domain.Member" >
     <!--
       WARNING - @mbg.generated
     -->
@@ -30,16 +30,53 @@
     <result column="session_key" property="sessionKey" jdbcType="VARCHAR" />
     <result column="token" property="token" jdbcType="VARCHAR" />
   </resultMap>
-  <select id="getMemberAndLevel" parameterType="Object" resultType="com.aaa.lee.app.vo.MemberAndLevelVo">
+  <select id="getMemberAndLevel" parameterType="Object" resultType="com.huifangyuan.app.vo.MemberAndLevelVo">
     select m.id,m.member_level_id,m.shop_id,m.integration,m.history_integration,m.growth,ml.comment_growth_point
     from ums_member m
     inner join ums_member_level ml
     on m.member_level_id = ml.id
     where m.shop_id = #{shopId} and m.id = #{memberId}
   </select>
-  <update id="updateMember" parameterType="com.aaa.lee.app.vo.MemberAndLevelVo">
+  <update id="updateMember" parameterType="com.huifangyuan.app.vo.MemberAndLevelVo">
     update ums_member
     set integration = #{integration},growth = #{growth},history_integration = #{historyIntegration}
     where id = #{id}
   </update>
+   <update id="updateMemberInfoMemberId" parameterType="com.huifangyuan.app.domain.Member" >
+    update ums_member set nickname=#{nickname},password=#{password},birthday=#{birthday},city=#{city},job=#{job} where id =#{id}
+  </update>
+  <select id="getMemberInforMemberId" parameterType="long" resultType="com.huifangyuan.app.domain.Member">
+    select nickname from ums_member where id =#{id}
+  </select>
+  <select id="getMemberInforToken" resultType="com.huifangyuan.app.domain.Member">
+    SELECT
+        id,
+        shop_id shopId,
+        member_level_id memberLevelId,
+        username,
+        password,
+        nickname,
+        phone,
+        status,
+        create_time createTime,
+        icon,
+        gender,
+        birthday,
+        city,
+        job,
+        personalized_signature personalizedSignature,
+        source_type sourceType,
+        integration,
+        growth,
+        luckey_count luckeyCount,
+        history_integration historyIntegration,
+        parent_id parentId,
+        open_id openId,
+        session_key sessionKey,
+        token
+    FROM
+        ums_member
+    WHERE
+        token = #{token}
+  </select>
 </mapper>

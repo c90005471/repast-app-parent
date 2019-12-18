@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.aaa.lee.app.mapper.OmsOrderItemMapper" >
-  <resultMap id="BaseResultMap" type="com.aaa.lee.app.domain.OmsOrderItem" >
+<mapper namespace="com.huifangyuan.app.mapper.OmsOrderItemMapper" >
+  <resultMap id="BaseResultMap" type="com.huifangyuan.app.domain.OmsOrderItem" >
     <!--
       WARNING - @mbg.generated
     -->
@@ -30,7 +30,7 @@
     <result column="gift_growth" property="giftGrowth" jdbcType="INTEGER" />
     <result column="product_attr" property="productAttr" jdbcType="VARCHAR" />
   </resultMap>
-  <insert id="setOrderItem" parameterType="com.aaa.lee.app.domain.OmsOrderItem">
+  <insert id="setOrderItem" parameterType="com.huifangyuan.app.domain.OmsOrderItem">
     insert into oms_order_item
     (
     order_id,

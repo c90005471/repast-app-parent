@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.aaa.lee.app.mapper.OmsCartItemMapper" >
-  <resultMap id="BaseResultMap" type="com.aaa.lee.app.domain.OmsCartItem" >
+<mapper namespace="com.huifangyuan.app.mapper.OmsCartItemMapper" >
+  <resultMap id="BaseResultMap" type="com.huifangyuan.app.domain.OmsCartItem" >
     <!--
       WARNING - @mbg.generated
     -->
@@ -28,14 +28,14 @@
     <result column="product_sn" property="productSn" jdbcType="VARCHAR" />
     <result column="product_attr" property="productAttr" jdbcType="VARCHAR" />
   </resultMap>
-  <update id="updateCartStatus" parameterType="com.aaa.lee.app.domain.OmsCartItem">
+  <update id="updateCartStatus" parameterType="com.huifangyuan.app.domain.OmsCartItem">
     update oms_cart_item
     set delete_status=#{deleteStatus}
     where member_id=#{memberId}
     and shop_id=#{shopId}
 
   </update>
-  <select id="getOmsCartltem" parameterType="object" resultType="com.aaa.lee.app.domain.SubmitOrderVO">
+  <select id="getOmsCartltem" parameterType="object" resultType="com.huifangyuan.app.domain.SubmitOrderVO">
     select
 oci.id pId,oci.product_id productId,oci.member_id memberId,oci.shop_id shopId,oci.price price,oci.quantity ,oci.product_pic productPic,oci.product_name productName,oci.create_date createDate,oci.modify_date modifyDate,oci.delete_status deleteStatus,
 um.nickname memberNickname,um.member_level_id memberLevelId,um.username memberUsername
@@ -43,7 +43,7 @@ from
 oms_cart_item oci,ums_member um
 where  oci.member_id = #{memberId} and oci.shop_id = #{shopId} and um.id = oci.member_id and oci.delete_status = 0
   </select>
-  <update id="updataDeleteStatus" parameterType="com.aaa.lee.app.domain.OmsCartItem">
+  <update id="updataDeleteStatus" parameterType="com.huifangyuan.app.domain.OmsCartItem">
     update oms_cart_item set delete_status = 1 where member_id = #{memberId} and shop_id = #{shopId}
   </update>
 </mapper>

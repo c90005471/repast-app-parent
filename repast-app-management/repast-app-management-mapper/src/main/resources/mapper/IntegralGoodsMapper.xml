@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.aaa.lee.app.mapper.IntegralGoodsMapper" >
-    <insert id="setIntegralOrder" parameterType="com.aaa.lee.app.domain.OmsOrder" useGeneratedKeys="true" keyProperty="id">
+<mapper namespace="com.huifangyuan.app.mapper.IntegralGoodsMapper" >
+    <insert id="setIntegralOrder" parameterType="com.huifangyuan.app.domain.OmsOrder" useGeneratedKeys="true" keyProperty="id">
     insert  into oms_order (
     member_id,
     shop_id,
@@ -23,7 +23,7 @@
       #{orderStatus}
     )
     </insert>
-    <insert id="setIntegralOrderItem" parameterType="com.aaa.lee.app.domain.OmsOrderItem">
+    <insert id="setIntegralOrderItem" parameterType="com.huifangyuan.app.domain.OmsOrderItem">
     insert into oms_order_item
     (
     product_id,
@@ -45,7 +45,7 @@
       #{orderId}
       )
     </insert>
-    <insert id="setIntegralChangeHistory" parameterType="com.aaa.lee.app.domain.UmsIntegrationChangeHistory">
+    <insert id="setIntegralChangeHistory" parameterType="com.huifangyuan.app.domain.UmsIntegrationChangeHistory">
      insert into ums_integration_change_history
     (
     member_id,
@@ -65,11 +65,11 @@
       #{operateMan}
       )
     </insert>
-    <select id="getPmsProductVO" parameterType="long" resultType="com.aaa.lee.app.domain.PmsProductVO">
+    <select id="getPmsProductVO" parameterType="long" resultType="com.huifangyuan.app.domain.PmsProductVO">
     select id pmsId,shop_id shopId,'name',pic,price,publish_status publishStatus,description
     from pms_product where  id = #{productId} and publish_status = 1
     </select>
-    <select id="getMemberNameById" parameterType="long" resultType="com.aaa.lee.app.domain.Member">
+    <select id="getMemberNameById" parameterType="long" resultType="com.huifangyuan.app.domain.Member">
         select username from ums_member where id = #{memberId}
     </select>
 </mapper>

@@ -4,19 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.aaa.lee.app</groupId>
+    <groupId>com.huifangyuan.app</groupId>
     <artifactId>repast-app-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>repast-app-common</module>
         <module>repast-app-config</module>
-        <module>repast-app-consumer-management</module>
-        <module>repast-app-eureka-management</module>
-        <module>repast-app-kernel</module>
-        <module>repast-app-login-4081</module>
         <module>repast-app-management</module>
         <module>repast-app-provider-management</module>
-        <module>repast-app-zuul-5081</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -30,16 +25,9 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Greenwich.SR3</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>5.0.4</version>
+                <version>5.1.47</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>

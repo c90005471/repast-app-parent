@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.aaa.lee.app.mapper.CartItemAndOrderVoMapper" >
+<mapper namespace="com.huifangyuan.app.mapper.CartItemAndOrderVoMapper" >
 
 
-    <select id="selctCartItemAndOrder" resultType="com.aaa.lee.app.vo.CartItemAndOrderVO">
+    <select id="selctCartItemAndOrder" resultType="com.huifangyuan.app.vo.CartItemAndOrderVO">
       SELECT
 	oci.id pId,
 	oci.product_id productId,
